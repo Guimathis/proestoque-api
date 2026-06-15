@@ -1,8 +1,11 @@
 import { Router } from "express";
 import { ProdutoController } from "../controllers/produto.controller";
+import { autenticar } from "../middlewares/auth";
 
 const router = Router();
 const controller = new ProdutoController();
+
+router.use(autenticar);
 
 // Cada linha mapeia: VERBO + URL → função do controller
 // O .bind(controller) garante que o 'this' dentro do método aponte para o controller

@@ -10,8 +10,8 @@ async function iniciar() {
         await prisma.$connect();
         console.log("✅ Banco de dados conectado");
 
-        app.listen(PORT, () => {
-            console.log(`🚀 ProEstoque API rodando em http://localhost:${PORT}`);
+        app.listen(Number(PORT), "0.0.0.0", () => {
+            console.log(`🚀 ProEstoque API rodando em http://0.0.0.0:${PORT} (acessível na rede)`);
             console.log(`📊 Prisma Studio: npx prisma studio`);
         });
     } catch (error) {

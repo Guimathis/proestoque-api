@@ -21,7 +21,7 @@ export class CategoriaController {
 
     async buscarPorId(req: Request, res: Response, next: NextFunction) {
         try {
-            const { id } = req.params;
+            const id = req.params.id as string;
             const categoria = await prisma.categoria.findUnique({
                 where: { id },
                 include: { produtos: { orderBy: { nome: "asc" } } },

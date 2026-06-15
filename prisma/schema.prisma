@@ -51,6 +51,7 @@ model Usuario {
   nome      String
   email     String   @unique // @unique gera index e garante unicidade
   senha     String   // Sempre guardar hash, nunca a senha em texto!
+  refreshToken String?
   criadoEm DateTime @default(now())
 
   @@map("usuarios")

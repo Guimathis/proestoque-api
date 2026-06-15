@@ -39,7 +39,7 @@ export class ProdutoController {
     // ── GET /api/produtos/:id ──────────────────────────────────
     async buscarPorId(req: Request, res: Response, next: NextFunction) {
         try {
-            const { id } = req.params;
+            const id = req.params.id as string;
 
             const produto = await prisma.produto.findUnique({
                 where: { id },
@@ -110,7 +110,7 @@ export class ProdutoController {
     // ── PUT /api/produtos/:id ──────────────────────────────────
     async atualizar(req: Request, res: Response, next: NextFunction) {
         try {
-            const { id } = req.params;
+            const id = req.params.id as string;
             const {
                 nome,
                 categoriaId,
@@ -162,7 +162,7 @@ export class ProdutoController {
     // ── DELETE /api/produtos/:id ───────────────────────────────
     async deletar(req: Request, res: Response, next: NextFunction) {
         try {
-            const { id } = req.params;
+            const id = req.params.id as string;
 
             // Verifica se existe antes de deletar
             const produtoExiste = await prisma.produto.findUnique({ where: { id } });
