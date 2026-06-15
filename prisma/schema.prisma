@@ -1,7 +1,8 @@
-// O provider define qual banco usar. Troque por "postgresql" no deploy.
+// Em DEV usa SQLite. O script "npm run build" detecta a DATABASE_URL
+// e troca automaticamente para "postgresql" quando necessário.
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL") // Lê do .env: "file:./dev.db"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
@@ -58,12 +59,12 @@ model Usuario {
 }
 
 // ──────────────────────────────────────────────────────────────
-// NOTAS SOBRE OS TIPOS:
-// String     → TEXT no SQLite
+// NOTAS SOBRE OS TIPOS (PostgreSQL):
+// String     → VARCHAR / TEXT no PostgreSQL
 // Int        → INTEGER
-// Float      → REAL
-// Boolean    → INTEGER (0/1) no SQLite
-// DateTime   → TEXT no SQLite (ISO 8601)
+// Float      → DOUBLE PRECISION
+// Boolean    → BOOLEAN
+// DateTime   → TIMESTAMP no PostgreSQL
 // String?    → nullable (pode ser NULL)
 // @id        → chave primária
 // @default() → valor padrão
